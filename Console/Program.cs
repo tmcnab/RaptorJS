@@ -7,7 +7,7 @@
     {
         static void Main(string[] args)
         {
-            var serverUrl = "http://localhost:54321";
+            var serverUrl = "http://raptorjs.apphb.com";
             var javascript = @"
     Console.Log('Servicing Request');
     Response.StatusCode = 200;
