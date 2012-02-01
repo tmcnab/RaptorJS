@@ -1,0 +1,12 @@
+C:\jurassic\jurassic_39608d99435c\Jurassic\bin\Debug\License.txt
+C:\jurassic\jurassic_39608d99435c\Jurassic\bin\Debug\Jurassic.dll
+C:\jurassic\jurassic_39608d99435c\Jurassic\bin\Debug\Jurassic.pdb
+C:\jurassic\jurassic_39608d99435c\Jurassic\obj\Debug\ResolveAssemblyReference.cache
+C:\jurassic\jurassic_39608d99435c\Jurassic\obj\Debug\Jurassic.dll
+C:\jurassic\jurassic_39608d99435c\Jurassic\obj\Debug\Jurassic.pdb
+C:\Users\Tristan McNab\Documents\Visual Studio 2010\Projects\Raptor\Jurassic\bin\Debug\License.txt
+C:\Users\Tristan McNab\Documents\Visual Studio 2010\Projects\Raptor\Jurassic\bin\Debug\Jurassic.dll
+C:\Users\Tristan McNab\Documents\Visual Studio 2010\Projects\Raptor\Jurassic\bin\Debug\Jurassic.pdb
+C:\Users\Tristan McNab\Documents\Visual Studio 2010\Projects\Raptor\Jurassic\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Tristan McNab\Documents\Visual Studio 2010\Projects\Raptor\Jurassic\obj\Debug\Jurassic.dll
+C:\Users\Tristan McNab\Documents\Visual Studio 2010\Projects\Raptor\Jurassic\obj\Debug\Jurassic.pdb
