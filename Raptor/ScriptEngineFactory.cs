@@ -40,6 +40,7 @@ namespace RaptorJS
 
             engine.SetGlobalFunction("require", new Action<string>((path) => engine.ExecuteFile(path)));
             engine.SetGlobalFunction("require", new Func<string, object>((path) => engine.Evaluate(new FileScriptSource(path))));
+
             return engine;
         }
     }

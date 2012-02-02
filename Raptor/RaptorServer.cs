@@ -97,8 +97,15 @@ namespace RaptorJS
         /// </param>
         protected void HandleRequest(HttpListenerContext httpContext)
         {
-            var engine = ScriptEngineFactory.Construct(httpContext);
-            engine.Execute(this.mainJavascript);
+            try
+            {
+                ScriptEngineFactory.Construct(httpContext).Execute(this.mainJavascript);
+            }
+            catch (Exception e)
+            {
+                Console.Error.Write(e);
+                httpContext.Response.Abort();
+            }
         }
     }
 }

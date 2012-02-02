@@ -11,8 +11,8 @@
             <div class='page-header'>
                 <h1>RaptorJS <small>Node.js for .NET</small></h1>
             </div>
-            <h3>@model</h3>
-            <p>Welcome! This is a pretty neat piece of tech.</p>
+            <h3>@model.name</h3>
+            <p>@model.name is @model.age years old and has an employee number of @model.id</p>
             
         </div>
     </body>

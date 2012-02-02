@@ -61,12 +61,14 @@
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Controllers\HomeController.js" />
     <Content Include="Main.js" />
+    <Content Include="Modules\Razor.js" />
     <Content Include="Modules\SimpleMVC.js" />
     <Content Include="Modules\HttpRequestDebug.js" />
     <Content Include="Views\Shared\Status\404.html" />
     <Content Include="Views\Shared\Status\500.html" />
     <None Include="Views\Home\Details.jshtml" />
     <None Include="Views\Home\Index.jshtml" />
+    <None Include="Views\Shared\Error.jshtml" />
     <None Include="Views\Shared\Layout.jshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,9 +16,25 @@
 
 HomeController = {
     Index: function () {
-        return FileSystem.Load('./Views/Home/Index.jshtml');
+        return new View();
     },
     Details: function (model) {
-        return FileSystem.Load('./Views/Home/Details.jshtml').replace('@model', model.toString());
+
+        if (model === undefined || model === null) {
+            return new View('Error');
+        }
+
+        return new View({
+            id: parseInt(model),
+            name: 'Karl Smith',
+            age: 27
+        });
+    },
+    Details2: function () {
+        return new View('Details', {
+            id: 123,
+            name: 'Betty Sue',
+            age: 22
+        });
     }
 };
