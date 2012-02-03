@@ -35,7 +35,7 @@ namespace RaptorJS
 
             engine.SetGlobalValue("Request", new RequestInstance(engine, context.Request));
             engine.SetGlobalValue("Response", new ResponseInstance(engine, context.Response));
-            engine.SetGlobalValue("Console", new ConsoleInstance(engine));
+            engine.SetGlobalValue("console", new ConsoleInstance(engine));
             engine.SetGlobalValue("FileSystem", new FileSystemInstance(engine));
 
             engine.SetGlobalFunction("require", new Action<string>((path) => engine.ExecuteFile(path)));

@@ -15,6 +15,7 @@
 namespace RaptorJS.JObjects
 {
     using System;
+    using System.Diagnostics;
     using Jurassic;
     using Jurassic.Library;
 
@@ -39,19 +40,39 @@ namespace RaptorJS.JObjects
         /// Logs the supplied argument to Console.Error
         /// </summary>
         /// <param name="o">The info to write out to error</param>
-        [JSFunction]
+        [JSFunction(Name="error")]
         public static void Error(object o)
         {
+            Debugger.Log(1, "Error", o.ToString());
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Error.WriteLine(o);
+        }
+
+        [JSFunction(Name="info")]
+        public static void Info(object o)
+        {
+            Debugger.Log(4, "Info", o.ToString());
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(o);
         }
 
         /// <summary>
         /// Logs the supplied argument to the Console
         /// </summary>
         /// <param name="o">The info to write out</param>
-        [JSFunction]
+        [JSFunction(Name="log")]
         public static void Log(object o)
         {
+            Debugger.Log(3, "Log", o.ToString());
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(o);
+        }
+
+        [JSFunction(Name="warn")]
+        public static void Warn(object o)
+        {
+            Debugger.Log(2, "Warning", o.ToString());
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(o);
         }
     }

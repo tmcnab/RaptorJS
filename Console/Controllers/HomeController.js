@@ -26,7 +26,8 @@ HomeController = {
 
         return new View({
             id: parseInt(model),
-            name: 'Karl Smith',
+            firstName: 'Karl',
+            lastName: 'Smith',
             age: 27
         });
     },

@@ -12,13 +12,16 @@
 // under your local laws, the contributors exclude the implied warranties of 
 // merchantability, fitness for a particular purpose and non-infringement.
 //---------------------------------------------------------------------------------------
-/*global Request,Response,Console,require,Document,FileSystem*/
+/*global Request,Response,Console,require,FileSystem*/
 
-//require('./Modules/Razor.js');
+require('./Modules/HttpRequestDebug.js');
+require('./Modules/Razor.js');
 
 var SimpleMVC = {
 
     HandleRequest: function () {
+        HttpRequestDebug.Print();
+
 
         // Split the incoming URL into discrete components
         var components = Request.Url.substr(1, Request.Url.length - 1).split('/');
@@ -58,7 +61,6 @@ var SimpleMVC = {
     },
 
     executeAction: function (controllerName, actionName, paramters) {
-
         if (this.controllerExists(controllerName)) {
             var controllerObject = require(this.ControllerPath + controllerName + "Controller.js");
 
@@ -71,7 +73,8 @@ var SimpleMVC = {
                     try {
                         Response.Content = actionResult.Render(controllerName, actionName);
                         Response.StatusCode = 200;
-                    } catch (e) {
+                    }
+                    catch (e) {
                         Console.Error('>> ' + e);
                         this.statusCodeResult(500);
                     }
@@ -115,9 +118,9 @@ var SimpleMVC = {
 //---------------------------------------------------------------------------//
 
 function View(a, b) {
-    
     this._Model = null;
     this._ViewPage = null;
+    this._Layout = SimpleMVC.ViewPathShared + 'Layout.jshtml';
 
     if (a !== undefined) {
         if (typeof (a) === 'string') {
@@ -130,7 +133,6 @@ function View(a, b) {
             throw 'Parameter must be View or Model';
         }
     }
-
     if (b !== undefined) {
         if (typeof (b) === 'string') {
             this._ViewPage = b;
@@ -167,8 +169,12 @@ View.prototype.Render = function (controllerName, actionName) {
     }
 
     if (this._Model !== null) {
-        //html = Razor.parse(html, this._Model);
-        html = html.replace('@model', this.Model);
+        html = Razor.Parse(html, this._Model);
+    }
+
+    if (FileSystem.Exists(this._Layout)) {
+        //console.log(FileSystem.Load(viewFilePath));
+        html = FileSystem.Load(this._Layout).replace('@RenderBody()', html);
     }
 
     return html;

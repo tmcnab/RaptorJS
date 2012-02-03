@@ -1,19 +1,2 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset='utf-8' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <title>RaptorJS</title>
-        <link rel='stylesheet' href='/Assets/css/bootstrap.min.css' />
-    </head>
-    <body>
-        <div class='container'>
-            <div class='page-header'>
-                <h1>RaptorJS <small>Node.js for .NET</small></h1>
-            </div>
-            <h3>@model.name</h3>
-            <p>@model.name is @model.age years old and has an employee number of @model.id</p>
-            
-        </div>
-    </body>
-</html>
+﻿<h3>@model.firstName @model.lastName</h3>
+<p>@model.firstName is @model.age years old and has an employee number of @model.id</p>

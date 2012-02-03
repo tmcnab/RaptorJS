@@ -15,6 +15,7 @@
 namespace RaptorJS
 {
     using System;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
 
@@ -59,7 +60,7 @@ namespace RaptorJS
         /// </summary>
         public void Start()
         {
-            Console.WriteLine(string.Format(">> RaptorJS is now listening on [{0}] for requests", this.httpListener.Prefixes));
+            Console.WriteLine(string.Format(">> RaptorJS is now listening on [{0}] for requests", this.httpListener.Prefixes.First()));
             this.httpListener.Start();
             while (this.httpListener.IsListening)
             {
