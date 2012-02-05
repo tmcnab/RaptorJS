@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <title>RaptorJS</title>
+        <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class='container'>
+            <div class='page-header'>
+                <h1>RaptorJS <small>Node.js for .NET</small></h1>
+            </div>
+            <p>Welcome! This is a pretty neat piece of tech.</p>
+            <p><a class="btn btn-success" href="/Home/Details/10">Controller/Action/Param combo</a></p>
+        </div>
+    </body>
+</html>

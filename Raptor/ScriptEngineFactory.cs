@@ -18,28 +18,45 @@ namespace RaptorJS
     using System.Net;
     using Jurassic;
     using RaptorJS.JObjects;
+    using System.Web;
 
     /// <summary>
     /// Creates and configures a Jurassic ScriptEngine for use as a HTTP request processor
     /// </summary>
-    internal static class ScriptEngineFactory
+    public static class ScriptEngineFactory
     {
         /// <summary>
         /// Creates and configures a Jurassic ScriptEngine
         /// </summary>
         /// <param name="context">The request/response context to process</param>
         /// <returns>A RaptorJS-configured Jurassic ScriptEngine instance</returns>
-        internal static ScriptEngine Construct(HttpListenerContext context)
+        public static ScriptEngine Construct(HttpListenerContext context)
         {
             ScriptEngine engine = new ScriptEngine();
 
             engine.SetGlobalValue("Request", new RequestInstance(engine, context.Request));
             engine.SetGlobalValue("Response", new ResponseInstance(engine, context.Response));
             engine.SetGlobalValue("console", new ConsoleInstance(engine));
-            engine.SetGlobalValue("FileSystem", new FileSystemInstance(engine));
+            engine.SetGlobalValue("file", new FileSystemInstance(engine));
 
             engine.SetGlobalFunction("require", new Action<string>((path) => engine.ExecuteFile(path)));
             engine.SetGlobalFunction("require", new Func<string, object>((path) => engine.Evaluate(new FileScriptSource(path))));
+
+            return engine;
+        }
+
+        public static ScriptEngine Construct(HttpContextBase httpContext, string vPath)
+        {
+            ScriptEngine engine = new ScriptEngine();
+
+            engine.SetGlobalValue("request", new HttpRequestInstance(engine, httpContext));
+            engine.SetGlobalValue("response", new HttpResponseInstance(engine, httpContext));
+
+            engine.SetGlobalValue("console", new ConsoleInstance(engine));
+            engine.SetGlobalValue("file", new FileSystemInstance(engine));
+            
+            engine.SetGlobalFunction("require", new Action<string>((path) => engine.ExecuteFile(httpContext.Server.MapPath(path))));
+            engine.SetGlobalFunction("require", new Func<string, object>((path) => engine.Evaluate(new FileScriptSource(httpContext.Server.MapPath(path)))));
 
             return engine;
         }

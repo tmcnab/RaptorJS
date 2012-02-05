@@ -18,6 +18,38 @@ namespace RaptorJS.JObjects
     using System.Net;
     using Jurassic;
     using Jurassic.Library;
+    using System.Web;
+
+    public class HttpResponseInstance : ObjectInstance
+    {
+        public HttpResponseBase Response { get; private set; }
+
+        public HttpResponseInstance(ScriptEngine engine, HttpContextBase httpContext) : base (engine)
+        {
+            this.Response = httpContext.Response;
+            this.PopulateFields();
+            this.PopulateFunctions();
+            this.StatusCode = 200;
+        }
+
+        
+        [JSProperty(Name="body")]
+        public string Body { get; set; }
+
+
+        [JSProperty(Name="statusCode")]
+        public int StatusCode
+        {
+            get { return Response.StatusCode; }
+            set { Response.StatusCode = value; }
+        }
+
+        [JSFunction(Name="complete")]
+        public void Write()
+        {
+            this.Response.Write(this.Body);
+        }
+    }
 
     public class ResponseInstance : ObjectInstance
     {

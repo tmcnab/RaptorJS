@@ -15,18 +15,12 @@
 namespace RaptorJS.JObjects
 {
     using System.IO;
+    using System.Web;
     using Jurassic;
     using Jurassic.Library;
 
-    /// <summary>
-    /// 
-    /// </summary>
     public class FileSystemInstance : ObjectInstance
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="engine"></param>
         public FileSystemInstance(ScriptEngine engine) : base(engine)
         {
             this.PopulateFunctions();
@@ -34,33 +28,16 @@ namespace RaptorJS.JObjects
 
         #region Functions
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        [JSFunction]
+        [JSFunction(Name="exists")]
         public bool Exists(string path)
         {
-            return File.Exists(path);
+            return File.Exists(HttpContext.Current.Server.MapPath(path));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        [JSFunction]
+        [JSFunction(Name="load")]
         public string Load(string path)
         {
-            try
-            {
-                return File.ReadAllText(path);
-            }
-            catch
-            {
-                return null;
-            }
+            return File.ReadAllText(HttpContext.Current.Server.MapPath(path));
         }
 
         #endregion

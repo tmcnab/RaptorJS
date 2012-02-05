@@ -1,0 +1,2 @@
+﻿<h3>@model.firstName @model.lastName</h3>
+<p>@model.firstName is @model.age years old and has an employee number of @model.id</p>

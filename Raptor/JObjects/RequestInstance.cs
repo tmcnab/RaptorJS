@@ -17,26 +17,74 @@ namespace RaptorJS.JObjects
     using System.Net;
     using Jurassic;
     using Jurassic.Library;
+    using System.Web;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    internal class RequestInstance : ObjectInstance
+    public class HttpRequestInstance : ObjectInstance
+    {
+        private HttpRequestBase Request;
+        
+        public HttpRequestInstance(ScriptEngine engine, HttpContextBase context) : base(engine)
+        {
+            this.Request = context.Request;
+            this.PopulateFields();
+            this.PopulateFunctions();
+        }
+
+        #region Properties
+
+        [JSProperty]
+        public ArrayInstance Accept
+        {
+            get { return this.Engine.Array.Construct(this.Request.AcceptTypes); }
+        }
+
+        [JSProperty]
+        public string ContentType
+        {
+            get { return this.Request.ContentType; }
+        }
+
+        [JSProperty]
+        public string Method
+        {
+            get { return this.Request.HttpMethod; }
+        }
+
+        [JSProperty]
+        public string Url
+        {
+            get { return this.Request.Path; }
+        }
+
+        [JSProperty]
+        public string UserAgent
+        {
+            get { return this.Request.UserAgent; }
+        }
+
+        #endregion
+    }
+
+    
+    public class RequestInstance : ObjectInstance
     {
 
         private HttpListenerRequest Request;
+        
+
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="engine"></param>
         /// <param name="request"></param>
-        internal RequestInstance(ScriptEngine engine, HttpListenerRequest request) : base(engine)
+        public RequestInstance(ScriptEngine engine, HttpListenerRequest request) : base(engine)
         {
             this.Request = request;
             this.PopulateFields();
             this.PopulateFunctions();
         }
+
 
         #region Properties
 
